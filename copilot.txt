@@ -1,0 +1,34 @@
+
+explicar:
+# Azure storage access info
+blob_account_name = "azureopendatastorage"
+blob_container_name = "nyctlc"
+blob_relative_path = "yellow"
+blob_sas_token = r""
+
+# Allow SPARK to read from Blob remotely
+wasbs_path = 'wasbs://%s@%s.blob.core.windows.net/%s' % (blob_container_name, blob_account_name, blob_relative_path)
+spark.conf.set(
+  'fs.azure.sas.%s.%s.blob.core.windows.net' % (blob_container_name, blob_account_name),
+  blob_sas_token)
+print('Remote blob path: ' + wasbs_path)
+
+# Armo un dateframe para el dataset de NYC Yellow Taxi 
+NYCTaxi_dataset = spark.read.parquet(wasbs_path)
+Copilot
+Este código se utiliza para leer datos desde un almacenamiento de blobs de Azure utilizando Spark. Aquí está lo que hace cada parte:
+
+Información de acceso al almacenamiento de Azure: Se definen varias variables que contienen la información necesaria para acceder a los datos almacenados en Azure. Estos incluyen el nombre de la cuenta de almacenamiento de blobs (blob_account_name), el nombre del contenedor de blobs (blob_container_name), la ruta relativa al blob (blob_relative_path) y el token SAS (blob_sas_token).
+Permitir a SPARK leer desde Blob de forma remota: Se construye la ruta al blob de Azure (wasbs_path) utilizando la información de acceso definida anteriormente. Luego, se configura Spark para que pueda leer desde esta ruta utilizando el token SAS.
+Construir un DataFrame para el conjunto de datos de NYC Yellow Taxi: Finalmente, se utiliza Spark para leer los datos almacenados en la ruta del blob de Azure y se crea un DataFrame (NYCTaxi_dataset). Los datos se leen en formato parquet, que es un formato de archivo columnar eficiente y ampliamente utilizado en el ecosistema de Big Data.
+
+¿Hay alguna transformación o limpieza adicional que se deba hacer con estos datos?
+
+Sí, generalmente después de cargar los datos, es posible que necesites realizar algunas transformaciones o limpiezas adicionales. Aquí hay algunos pasos comunes que podrías considerar:
+
+Verificar la calidad de los datos: Comprueba si hay valores faltantes o inconsistentes en los datos. Puedes usar métodos como df.describe() para obtener un resumen estadístico de las columnas numéricas y df.count() para verificar si hay valores nulos.
+Limpieza de datos: Dependiendo de la calidad de tus datos, es posible que necesites limpiarlos. Esto podría implicar eliminar filas o columnas con demasiados valores nulos, llenar valores nulos con un valor predeterminado o calculado (como la media o la mediana), o corregir valores inconsistentes.
+Transformación de datos: Es posible que necesites transformar tus datos para que sean más útiles para tu análisis. Esto podría incluir la creación de nuevas columnas a partir de columnas existentes (por ejemplo, extrayendo el mes de una columna de fecha), convertir tipos de datos, o codificar variables categóricas.
+Normalización de datos: Si planeas utilizar técnicas de machine learning en tus datos, es posible que necesites normalizar tus datos para que todas las características estén en la misma escala.
+División de datos: Para los modelos de machine learning, generalmente necesitarás dividir tus datos en conjuntos de entrenamiento, validación y prueba.
+Recuerda que estos pasos pueden variar dependiendo de tus datos y de lo que planeas hacer con ellos. Es importante entender tus datos y tus objetivos antes de decidir qué transformaciones o limpiezas son necesarias.
