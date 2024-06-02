@@ -1,0 +1,28 @@
+## Copilot
+En PySpark, puedes utilizar varios tipos de datos para definir las columnas en un DataFrame. A continuación, te presento algunos tipos de datos comunes:
+- StringType: Representa una cadena de caracteres (texto). Útil para almacenar nombres, descripciones o cualquier otro texto.
+- IntegerType: Almacena números enteros. Puedes usarlo para representar edades, cantidades, identificadores, etc.
+- DoubleType o FloatType: Estos tipos de datos son para números con decimales (punto flotante). Úsalos para valores como precios, tasas, etc.
+- BooleanType: Almacena valores booleanos (verdadero o falso). Ideal para indicadores o banderas.
+- DateType y TimestampType: Para fechas y marcas de tiempo. DateType almacena solo la fecha, mientras que TimestampType incluye la hora también.
+- ArrayType y MapType: Para almacenar listas o mapas. Por ejemplo, una columna que contiene una lista de intereses o un mapa de atributos.
+Además, si estás trabajando con MySQL, aquí tienes algunos tipos de datos que puedes usar:
+- Números enteros:
+    - TINYINT: Rango de -128 a 127 (con signo) o de 0 a 255 (sin signo).
+    - SMALLINT: Rango de -32768 a 32767 (con signo) o de 0 a 65535 (sin signo).
+    - MEDIUMINT: Rango de -8,388,608 a 8,388,607 (con signo) o de 0 a 16,777,215 (sin signo).
+    - INT o INTEGER: Rango de -2,147,483,648 a 2,147,483,647 (con signo) o de 0 a 4,294,967,295 (sin signo).
+    - BIGINT: Rango de -9,223,372,036,854,775,808 a 9,223,372,036,854,775,807 (con signo) o de 0 a 18,446,744,073,709,551,615 (sin signo).
+- Números decimales:
+    - FLOAT: Número en coma flotante de precisión simple.
+    - DOUBLE o REAL: Número en coma flotante de precisión doble.
+    - DECIMAL o NUMERIC: Número en coma flotante desempaquetado.
+- Cadenas de texto:
+    - CHAR: Cadena de longitud fija.
+    - VARCHAR: Cadena de longitud variable.
+    - TEXT: Texto largo.
+- Fechas y horas:
+    - DATE: Almacena una fecha (desde el 1 de enero del 1001 hasta el 31 de diciembre de 9999).
+    - DATETIME: Almacena fecha y hora.
+    - TIMESTAMP: Marca de tiempo.
+Recuerda elegir el tipo de dato adecuado según el rango de valores, el espacio de almacenamiento y el tipo de datos que contendrá cada columna . Si tienes más preguntas, no dudes en preguntar.
